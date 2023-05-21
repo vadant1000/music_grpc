@@ -34,8 +34,11 @@ def run():
 
         response2 = stub.addMusic(read_iterfile('/home/vadim/Загрузки/INSTASAMKA_-_Tyagi_75868475.mp3'))
 
+        response3 = stub.removeMusic(MusicService_pb2.RemoveMusicRequest(uuid=''))
+
     print(response.url)
     print(response2.url, response2.status)
+    print(response3.status)
 
 
 if __name__ == "__main__":

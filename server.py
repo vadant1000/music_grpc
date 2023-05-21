@@ -29,13 +29,15 @@ class Music(MusicService_pb2_grpc.MusicServicer):
                 continue
             data.extend(request.chunk_data)
 
-        minio.add_music("test", filepath, data)
+        url = minio.add_music("test", filepath, data)
         data.clear()
 
-        # with open(filepath, 'wb') as f:
-        #     f.write(data)
+        return MusicService_pb2.AddMusicResponse(url=url, status=True)
 
-        return MusicService_pb2.AddMusicResponse(url='ok', status=True)
+    def removeMusic(self, request, context):
+        minio.remove_music("test", request.uuid)
+        return MusicService_pb2.RemoveMusicResponse(status=True)
+
 
         # data_stream = request.music
         # data = io.BytesIO(data_stream)

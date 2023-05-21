@@ -40,6 +40,7 @@ class MinioClass:
             # result = self.client.fput_object(
             #     username, title, content,
             # )
+            return result.location
         except S3Error as e:
             print("minio error occurred: ", e)
         except Exception as e:
